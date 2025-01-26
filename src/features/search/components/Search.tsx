@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from './Search.module.css'
+import styles from '../assets/Search.module.css'
 
 function Search () {
 
