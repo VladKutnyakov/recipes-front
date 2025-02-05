@@ -2,5 +2,8 @@
   --border-radius: 8px;
 
   --color-primary: #ffb85c;
-  --color-dark: #0a0a0a,
+  --color-primary-light: #fff5e8;
+  --color-black: #0a0a0a;
+  --color-black-light: #f4f4f4;
+  --color-white: #ffffff;
 }

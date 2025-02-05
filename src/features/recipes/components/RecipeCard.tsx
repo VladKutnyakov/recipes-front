@@ -6,9 +6,23 @@ type Props = {
 }
 
 function RecipeCard ({ item }: Props) {
+  const createdAtDate = new Date(item.created_at).toLocaleDateString('ru')
+
   return <>
     <div className={styles['recipe-card']}>
-      { item.name }
+      <div className={styles['recipe-card__image']}>
+      </div>
+      <div className={styles['recipe-card__info']}>
+        <div className={styles['recipe-card__name']}>
+          { item.name }
+        </div>
+        <div className={styles['recipe-card__description']}>
+          { item.description }
+        </div>
+        <div className={styles['recipe-card__date']}>
+          { createdAtDate }
+        </div>
+      </div>
     </div>
   </>
 }

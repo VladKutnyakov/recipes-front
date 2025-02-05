@@ -12,11 +12,11 @@
   width: 100%;
   padding: 10px 12px;
   border-radius: var(--border-radius);
-  border: 1px solid var(--color-dark);
+  border: 1px solid var(--color-black);
 }
 
 .search__input:focus-within {
-  border: 1px solid var(--color-dark);
+  border: 1px solid var(--color-black);
   outline: 2px solid var(--color-primary);
 }
 
@@ -26,7 +26,9 @@
   width: 100%;
   padding: 10px 0;
   border-radius: var(--border-radius);
-  border: 1px solid var(--color-dark);
+  border: 1px solid var(--color-black);
+  background-color: var(--color-white);
+  z-index: 2;
 }
 
 .dropdown-list {
@@ -39,4 +41,5 @@
 
 .dropdown-list__item:hover {
   cursor: pointer;
+  background-color: var(--color-black-light);
 }
