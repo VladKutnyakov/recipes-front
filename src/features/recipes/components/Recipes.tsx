@@ -5,20 +5,19 @@ import styles from '../assets/Recipes.module.css'
 import RecipeCard from "./RecipeCard"
 
 function Recipes () {
-  const [recipes, setRecipes] = useState<Array<Tables<'recipe'>>>([])
+  const [recipes, setRecipes] = useState<Tables<'recipe'>[]>([])
 
   useEffect(() => {
-    const fetchData = () => {
-      getRecipes().then(response => {
-        setRecipes(response.data || [])
-      })
+    const fetchData = async () => {
+      const response = await getRecipes()
+      setRecipes(response.data ?? [])
     }
 
-    fetchData()
+    void fetchData()
   }, [])
 
   return <>
-    <div className={styles['recipes']}>
+    <div className={styles.recipes}>
       { recipes.map(item => <RecipeCard key={item.id} item={item} />) }
     </div>
   </>

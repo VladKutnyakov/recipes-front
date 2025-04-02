@@ -3,12 +3,10 @@ import styles from '../assets/Search.module.css'
 
 function Search () {
   const [searchStr, setSearchStr] = useState('')
-  const [searchItem, setSearchItem] = useState<string | null>(null)
   const [isShowDropdown, setIsShowDropdown] = useState(false)
 
   function search (item: string) {
     setSearchStr(item)
-    setSearchItem(item)
   }
 
   function Dropdown () {
@@ -18,7 +16,7 @@ function Search () {
       return <>
         <li
           className={styles['dropdown-list__item']}
-          onClick={() => search(item)}
+          onClick={() => { search(item) }}
         >
           { item }
         </li>
@@ -26,26 +24,26 @@ function Search () {
     }
 
     return <>
-      <div className={styles['search__dropdown']}>
-      {
-        items.length > 0
-        ? <ul className={styles['dropdown-list']}>
-            { items.map(item => <DropdownItem item={item} key={item} />) }
-          </ul>
-        : <div>Пусто</div>
-      }
+      <div className={styles.search__dropdown}>
+        {
+          items.length > 0
+            ? <ul className={styles['dropdown-list']}>
+              { items.map(item => <DropdownItem item={item} key={item} />) }
+            </ul>
+            : <div>Пусто</div>
+        }
       </div>
     </>
   }
 
   return <>
-    <div className={styles['search']}>
+    <div className={styles.search}>
       <div className={styles['search__input-wrapper']}>
         <input
-          className={styles['search__input']}
+          className={styles.search__input}
           value={searchStr}
-          onChange={event => setSearchStr(event.currentTarget.value)}
-          onFocus={() => setIsShowDropdown(true)}
+          onChange={event => { setSearchStr(event.currentTarget.value) }}
+          onFocus={() => { setIsShowDropdown(true) }}
         />
       </div>
       { isShowDropdown && searchStr && <Dropdown /> }

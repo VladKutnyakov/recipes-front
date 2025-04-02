@@ -4,7 +4,7 @@ import { Outlet } from "react-router"
 
 function DefaultLayout () {
   return (
-    <div className={styles['main']}>
+    <div className={styles.main}>
       <Header />
       <Outlet />
     </div>

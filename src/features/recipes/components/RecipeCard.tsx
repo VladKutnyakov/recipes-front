@@ -1,7 +1,7 @@
 import { Tables } from "@/types/database.types"
 import styles from '../assets/RecipeCard.module.css'
 
-type Props = {
+interface Props {
   item: Tables<'recipe'>,
 }
 

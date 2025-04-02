@@ -1,7 +1,7 @@
 import { HTMLInputTypeAttribute } from "react"
 import styles from './Input.module.css'
 
-type Props = {
+interface Props {
   type?: HTMLInputTypeAttribute,
 }
 
