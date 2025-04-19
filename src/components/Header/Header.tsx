@@ -1,4 +1,4 @@
-import Search from "@/features/search/components/Search"
+import Search from '@/features/search/components/Search'
 import styles from './Header.module.css'
 
 function Header () {

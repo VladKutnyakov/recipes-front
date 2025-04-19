@@ -1,11 +1,11 @@
 import styles from './default.module.css'
-import Header from '@/components/header/Header'
-import { Outlet } from "react-router"
+// import Header from '@/components/header/Header'
+import { Outlet } from 'react-router'
 
 function DefaultLayout () {
   return (
     <div className={styles.main}>
-      <Header />
+      {/* <Header /> */}
       <Outlet />
     </div>
   )

@@ -1,0 +1,8 @@
+.ai-recipe {
+
+}
+
+.ai-recipe__form {
+  display: grid;
+  gap: 8px;
+}

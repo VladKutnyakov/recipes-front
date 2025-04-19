@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
-import { getRecipes } from "../api/recipes"
-import { Tables } from "@/types/database.types"
+import { useEffect, useState } from 'react'
+import { getRecipes } from '../api/recipes'
+import { Tables } from '@/types/database.types'
 import styles from '../assets/Recipes.module.css'
-import RecipeCard from "./RecipeCard"
+import RecipeCard from './RecipeCard'
 
 function Recipes () {
   const [recipes, setRecipes] = useState<Tables<'recipe'>[]>([])
