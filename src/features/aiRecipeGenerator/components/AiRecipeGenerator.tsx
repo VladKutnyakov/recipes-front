@@ -2,15 +2,18 @@ import { useMutation } from '@tanstack/react-query'
 import { requestRecipe } from '@/features/aiRecipeGenerator/api/aiRecipeGenerator'
 import { useForm } from '@tanstack/react-form'
 import { CreateAiMessageDto } from '@/features/aiRecipeGenerator/api/types'
-import { Box, Button, TextArea, TextField, Text, IconButton, Badge, Heading, Flex, DataList, Grid } from '@radix-ui/themes'
+import { Box, Button, TextArea, TextField, Text, IconButton, Badge, Heading, Flex, DataList, Grid, Switch } from '@radix-ui/themes'
 import { useState } from 'react'
 import { Cross2Icon, PlusIcon } from '@radix-ui/react-icons'
 
 function AiRecipeGenerator () {
   const [newIngredient, setNewIngredient] = useState('')
+  const [isAdditionalIngredients, setIsAdditionalIngredients] = useState(false)
   const form = useForm({
     defaultValues: {
       ingredients: [],
+      prUseAllIngredients: false,
+      additionalIngredientsCount: 0,
       cuisine: '',
       comment: '',
     } as CreateAiMessageDto,
@@ -31,7 +34,7 @@ function AiRecipeGenerator () {
 
   return <>
     <form onSubmit={submitForm}>
-      <Grid gap="8px">
+      <Grid gap="16px">
         <Box width="100%">
           <form.Field
             name="ingredients"
@@ -90,10 +93,56 @@ function AiRecipeGenerator () {
             )}
           </form.Field>
         </Box>
-        <form.Field
-          name="cuisine"
-          children={(field) => (
-            <Box width="100%">
+        <Box width="100%">
+          <form.Field
+            name="prUseAllIngredients"
+            children={(field) => (
+              <Text as="label">
+                Использовать все указанные ингредиенты
+                <Box>
+                  <Switch
+                    checked={field.state.value}
+                    onBlur={field.handleBlur}
+                    onCheckedChange={(e) => { field.handleChange(e) }}
+                  />
+                </Box>
+              </Text>
+            )}
+          />
+        </Box>
+        <Box width="100%">
+          <form.Field
+            name="additionalIngredientsCount"
+            children={(field) => (
+              <>
+                <Text as="label">
+                  Использовать дополнительные ингредиенты
+                  <Box>
+                    <Switch
+                      checked={isAdditionalIngredients}
+                      onCheckedChange={(e) => { setIsAdditionalIngredients(e) }}
+                    />
+                  </Box>
+                </Text>
+                {isAdditionalIngredients &&
+                  <Text as="label">
+                    Максимальное количество дополнительных ингредиентов
+                    <TextField.Root
+                      value={field.state.value}
+                      type="number"
+                      onBlur={field.handleBlur}
+                      onChange={(e) => { field.handleChange(e.target.value) }}
+                    />
+                  </Text>
+                }
+              </>
+            )}
+          />
+        </Box>
+        <Box width="100%">
+          <form.Field
+            name="cuisine"
+            children={(field) => (
               <Text as="label">
                 Кухня
                 <TextField.Root
@@ -102,13 +151,13 @@ function AiRecipeGenerator () {
                   onChange={(e) => { field.handleChange(e.target.value) }}
                 />
               </Text>
-            </Box>
-          )}
-        />
-        <form.Field
-          name="comment"
-          children={(field) => (
-            <Box width="100%">
+            )}
+          />
+        </Box>
+        <Box width="100%">
+          <form.Field
+            name="comment"
+            children={(field) => (
               <Text as="label">
                 Примечание
                 <TextArea
@@ -117,9 +166,9 @@ function AiRecipeGenerator () {
                   onChange={(e) => { field.handleChange(e.target.value) }}
                 />
               </Text>
-            </Box>
-          )}
-        />
+            )}
+          />
+        </Box>
         <Button type="submit" loading={mutation.isPending}>
           Придумать
         </Button>
